@@ -3,9 +3,23 @@ import TodoItem from "./TodoItem";
 
 export default class TodoList extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
-        <TodoItem />
+        {
+          this.props.todos.map(todo=>{
+            return (
+              <TodoItem 
+                key={todo.id} 
+                {...todo}
+                // id={todo.id} 
+                // title={todo.title} 
+                // isCompleted={todo.isCompleted}
+              />
+            )
+          })
+        }
+        
       </div>
     )
   }
