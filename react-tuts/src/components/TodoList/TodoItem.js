@@ -9,16 +9,18 @@ export default class TodoItem extends Component {
 
     onChangeCompleted && onChangeCompleted(this.props.id)
   }
+  shouldComponentUpdate(nextProps,nextState){
+    return nextProps.completed !== this.props.completed
+  }
   render() {
-    console.log(this.props)
-   
+   console.log('todoitem render')
     return (
       <div>
         <li>
-          <input type="checkbox" checked={this.props.isCompleted} 
+          <input type="checkbox" checked={this.props.completed} 
             onChange={this.handleCheckboxChange}
           />
-          {this.props.title} {this.props.isCompleted ? "已完成" : "未完成"}
+          {this.props.title} {this.props.completed ? "已完成" : "未完成"}
         </li>
       </div>
     );
