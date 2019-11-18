@@ -14,11 +14,16 @@ export default class TodoInput extends Component {
   }
   handleAddData = ()=>{
     let val = this.state.inputValue
-    if (val!=''){
+    if (val!==''){
       this.props.addTodo(val)
       this.setState({
         inputValue: ''
       })
+    }
+  }
+  handleKeyUpInput = (e)=>{
+    if (e.keyCode === 13){
+      this.handleAddData()
     }
   }
   handleChangeInput = (e)=>{
@@ -30,7 +35,10 @@ export default class TodoInput extends Component {
   render() {
     return (
       <div>
-        <input type="text" value={this.state.inputValue} onChange={this.handleChangeInput}/> 
+        <input type="text" value={this.state.inputValue} 
+          onChange={this.handleChangeInput}
+          onKeyUp={this.handleKeyUpInput}
+          /> 
         <button onClick={this.handleAddData}>{this.props.btnText}</button>
       </div>
     )
